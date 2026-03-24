@@ -8,6 +8,7 @@ const links = [
   { href: "/todos", label: "Todos" },
   { href: "/guide", label: "Guide" },
   { href: "/about-us", label: "About Us" },
+  { href: "/login", label: "Login" },
 ];
 
 export default function Header() {
