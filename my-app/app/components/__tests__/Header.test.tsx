@@ -28,6 +28,7 @@ describe("Header", () => {
     expect(screen.getByText("Home")).toBeInTheDocument();
     expect(screen.getByText("Todos")).toBeInTheDocument();
     expect(screen.getByText("Guide")).toBeInTheDocument();
+    expect(screen.getByText("Login")).toBeInTheDocument();
   });
 
   it("renders links with correct hrefs", () => {
@@ -36,6 +37,7 @@ describe("Header", () => {
     expect(screen.getByText("Home").closest("a")).toHaveAttribute("href", "/");
     expect(screen.getByText("Todos").closest("a")).toHaveAttribute("href", "/todos");
     expect(screen.getByText("Guide").closest("a")).toHaveAttribute("href", "/guide");
+    expect(screen.getByText("Login").closest("a")).toHaveAttribute("href", "/login");
   });
 
   it("applies active styles to the current route link", () => {
