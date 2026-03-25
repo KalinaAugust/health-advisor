@@ -1,11 +1,14 @@
-const todos = [
-  { id: 1, text: "Learn Next.js App Router", done: true },
-  { id: 2, text: "Build a todos page", done: true },
-  { id: 3, text: "Add navigation header", done: false },
-  { id: 4, text: "Deploy to production", done: false },
-];
+import { sql } from '@/lib/db';
 
-export default function TodosPage() {
+type Todo = {
+  id: number;
+  text: string;
+  done: boolean;
+};
+
+export default async function TodosPage() {
+  const todos = await sql<Todo[]>`SELECT id, text, done FROM todos ORDER BY id`;
+
   return (
     <main className="flex-1 p-8 max-w-lg mx-auto w-full">
       <h1 className="text-2xl font-bold mb-6">Todos</h1>
