@@ -4,6 +4,11 @@ import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import type { SurveyData } from "@/lib/recommendations";
 
+const inputClass = "w-full rounded border border-border bg-transparent px-3 py-2 text-sm outline-none focus:border-brand";
+const selectClass = inputClass;
+const labelClass = "block text-sm font-medium text-foreground";
+const errorClass = "text-xs text-red-600";
+
 const initialForm: SurveyData = {
   age: 0,
   sex: "",
@@ -46,19 +51,14 @@ export default function SurveyPage() {
     router.push("/recommendations");
   }
 
-  const inputClass = "w-full rounded border border-black/20 bg-transparent px-3 py-2 text-sm outline-none focus:border-black dark:border-white/20 dark:focus:border-white";
-  const selectClass = inputClass;
-  const labelClass = "block text-sm font-medium";
-  const errorClass = "text-xs text-red-600 dark:text-red-400";
-
   return (
-    <main className="flex flex-col flex-1 items-center bg-zinc-50 dark:bg-black py-12 px-4">
+    <main className="flex flex-col flex-1 items-center bg-background py-12 px-4">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg space-y-5 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-black p-8"
+        className="w-full max-w-lg space-y-5 rounded-xl border border-border bg-surface p-8"
       >
-        <h1 className="text-2xl font-semibold text-black dark:text-zinc-50">Health Survey</h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        <h1 className="text-2xl font-semibold text-foreground">Health Survey</h1>
+        <p className="text-sm text-muted">
           Fill in your details below to receive personalised health recommendations.
         </p>
 
@@ -176,7 +176,7 @@ export default function SurveyPage() {
 
         <button
           type="submit"
-          className="w-full rounded-full bg-foreground py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
+          className="w-full rounded-full bg-brand py-2.5 text-sm font-medium text-background transition-colors hover:bg-brand-hover"
         >
           Get My Recommendations
         </button>

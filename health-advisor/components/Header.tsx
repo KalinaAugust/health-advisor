@@ -9,6 +9,7 @@ const links = [
   { href: "/survey", label: "Take Survey" },
   { href: "/recommendations", label: "My Results" },
   { href: "/about", label: "About" },
+  { href: "/profile", label: "Profile" },
 ];
 
 export default function Header() {
@@ -16,16 +17,16 @@ export default function Header() {
   const { data: session } = useSession();
 
   return (
-    <header className="border-b border-black/10 dark:border-white/10 px-6 py-4">
-      <nav className="flex items-center gap-6">
+    <header className="border-b border-border bg-background px-6 py-4">
+      <nav aria-label="Main navigation" className="flex items-center gap-6">
         {links.map(({ href, label }) => (
           <Link
             key={href}
             href={href}
-            className={`text-sm font-medium transition-colors hover:text-black dark:hover:text-white ${
+            className={`text-sm font-medium transition-colors hover:text-foreground ${
               pathname === href
-                ? "text-black dark:text-white underline underline-offset-4"
-                : "text-black/50 dark:text-white/50"
+                ? "text-foreground underline underline-offset-4"
+                : "text-subtle"
             }`}
           >
             {label}
@@ -35,22 +36,22 @@ export default function Header() {
         <div className="ml-auto flex items-center gap-4">
           {session ? (
             <>
-              <span className="text-sm text-zinc-500 dark:text-zinc-400">
+              <span className="text-sm text-subtle">
                 {session.user?.name ?? session.user?.email}
               </span>
               <button
                 onClick={() => signOut({ callbackUrl: "/" })}
-                className="text-sm font-medium text-black/50 transition-colors hover:text-black dark:text-white/50 dark:hover:text-white"
+                className="text-sm font-medium text-subtle transition-colors hover:text-foreground"
               >
-                Выйти
+                Logout
               </button>
             </>
           ) : (
             <Link
               href="/login"
-              className="text-sm font-medium text-black/50 transition-colors hover:text-black dark:text-white/50 dark:hover:text-white"
+              className="text-sm font-medium text-subtle transition-colors hover:text-foreground"
             >
-              Войти
+              Login
             </Link>
           )}
         </div>

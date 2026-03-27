@@ -5,9 +5,9 @@ import Link from "next/link";
 import { getRecommendations, type SurveyData, type Recommendation } from "@/lib/recommendations";
 
 const priorityBorder: Record<Recommendation["priority"], string> = {
-  high: "border-l-red-500",
-  medium: "border-l-amber-400",
-  low: "border-l-green-500",
+  high: "border-l-red-400",
+  medium: "border-l-amber-500",
+  low: "border-l-priority-low",
 };
 
 const priorityLabel: Record<Recommendation["priority"], string> = {
@@ -32,11 +32,11 @@ export default function RecommendationsPage() {
 
   if (!raw) {
     return (
-      <main className="flex flex-col flex-1 items-center justify-center gap-4 px-4">
-        <p className="text-zinc-600 dark:text-zinc-400">Please complete the survey first.</p>
+      <main className="flex flex-col flex-1 items-center justify-center gap-4 px-4 bg-background">
+        <p className="text-muted">Please complete the survey first.</p>
         <Link
           href="/survey"
-          className="text-sm font-medium underline underline-offset-4 text-black dark:text-zinc-50"
+          className="text-sm font-medium underline underline-offset-4 text-foreground"
         >
           Go to Survey
         </Link>
@@ -44,34 +44,46 @@ export default function RecommendationsPage() {
     );
   }
 
-  const data: SurveyData = JSON.parse(raw);
+  let data: SurveyData;
+  try {
+    data = JSON.parse(raw);
+  } catch {
+    return (
+      <main className="flex flex-col flex-1 items-center justify-center gap-4 px-4 bg-background">
+        <p className="text-muted">Survey data is invalid. Please retake the survey.</p>
+        <Link href="/survey" className="text-sm font-medium underline underline-offset-4 text-foreground">
+          Go to Survey
+        </Link>
+      </main>
+    );
+  }
   const recommendations = getRecommendations(data);
 
   return (
-    <main className="flex flex-col flex-1 items-center bg-zinc-50 dark:bg-black py-12 px-4">
+    <main className="flex flex-col flex-1 items-center bg-background py-12 px-4">
       <div className="w-full max-w-lg space-y-4">
-        <h1 className="text-2xl font-semibold text-black dark:text-zinc-50">Your Recommendations</h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 pb-2">
+        <h1 className="text-2xl font-semibold text-foreground">Your Recommendations</h1>
+        <p className="text-sm text-muted pb-2">
           Based on your survey responses. Always consult a qualified healthcare professional before making changes to your health routine.
         </p>
 
-        {recommendations.map((rec, i) => (
+        {recommendations.map((rec) => (
           <div
-            key={i}
-            className={`rounded-xl border border-black/10 dark:border-white/10 border-l-4 ${priorityBorder[rec.priority]} bg-white dark:bg-black px-6 py-5 space-y-1`}
+            key={rec.title}
+            className={`rounded-xl border border-border border-l-4 ${priorityBorder[rec.priority]} bg-surface px-6 py-5 space-y-1`}
           >
-            <p className="text-xs font-medium text-zinc-400 uppercase tracking-wide">
+            <p className="text-xs font-medium text-subtle uppercase tracking-wide">
               {priorityLabel[rec.priority]}
             </p>
-            <h2 className="text-base font-semibold text-black dark:text-zinc-50">{rec.title}</h2>
-            <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">{rec.body}</p>
+            <h2 className="text-base font-semibold text-foreground">{rec.title}</h2>
+            <p className="text-sm leading-6 text-muted">{rec.body}</p>
           </div>
         ))}
 
         <div className="pt-4">
           <Link
             href="/survey"
-            className="text-sm font-medium underline underline-offset-4 text-black dark:text-zinc-50"
+            className="text-sm font-medium underline underline-offset-4 text-foreground"
           >
             Retake the survey
           </Link>

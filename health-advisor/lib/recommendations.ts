@@ -1,12 +1,12 @@
 export type SurveyData = {
   age: number;
-  sex: string;
+  sex: "" | "male" | "female" | "other";
   heightCm: number;
   weightKg: number;
-  activityLevel: string;
+  activityLevel: "" | "sedentary" | "light" | "moderate" | "active";
   smoking: boolean;
   sleepHours: number;
-  primaryConcern: string;
+  primaryConcern: "" | "weight" | "energy" | "stress" | "heart" | "general";
 };
 
 export type Recommendation = {
