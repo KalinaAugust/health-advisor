@@ -3,9 +3,10 @@ import React from 'react';
 interface ButtonProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children: React.ReactNode;
-  color?: 'light' | 'dark';
+  color?: 'light' | 'dark' | 'green';
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
+  fullWidth?: boolean;
 }
 
 export default function Button({
@@ -13,13 +14,16 @@ export default function Button({
    children,
    color = 'dark', // Значение по умолчанию
    type = 'button',
-   disabled = false
+   disabled = false,
+   fullWidth = true,
   }: ButtonProps) {
 
-  const baseStyles = "w-full rounded-full border py-2.5 text-sm font-semibold transition-all cursor-pointer shadow-[0_4px_8px_rgba(180,80,0,0.35)] hover:shadow-[0_2px_4px_rgba(180,80,0,0.2)]";
+  const baseStyles = `${fullWidth ? "w-full" : "px-5"} rounded-full border py-2.5 text-sm font-semibold transition-all cursor-pointer shadow-[0_4px_8px_rgba(180,80,0,0.35)] hover:shadow-[0_2px_4px_rgba(180,80,0,0.2)]`;
 
   const colorStyles = color === 'light'
     ? "border-border text-foreground hover:bg-brand-light"
+    : color === 'green'
+    ? "bg-green-900 text-white hover:bg-green-800 border-transparent shadow-[0_0_12px_rgba(34,197,94,0.4)] hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]"
     : "bg-brand text-background hover:bg-brand-hover border-transparent";
 
   return (
