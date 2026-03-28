@@ -21,14 +21,6 @@ npm run lint     # eslint
 
 ## Architecture
 
-App Router structure under `app/`:
-
-- `layout.tsx` — root layout, wraps all pages with `<Header>` and global fonts (Geist)
-- `page.tsx` — home page (Server Component)
-- `todos/page.tsx` — todos page (Server Component), static data
-- `components/Header.tsx` — Client Component (`"use client"`), navigation with active-link highlighting via `usePathname`
-- `LogTimeButton.tsx` — Client Component (`"use client"`), used inline in `page.tsx`
-
 **Styling:** Tailwind utility classes only, dark mode via `dark:` variants. No CSS modules or styled-components.
 
 **Client vs Server:** Pages are Server Components by default. Add `"use client"` only when hooks (e.g. `usePathname`, `useState`) or browser APIs are needed.

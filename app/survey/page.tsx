@@ -3,6 +3,7 @@
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import type { SurveyData } from "@/lib/recommendations";
+import Button from "@/components/Button";
 
 const inputClass = "w-full rounded border border-border bg-transparent px-3 py-2 text-sm outline-none focus:border-brand";
 const selectClass = inputClass;
@@ -174,12 +175,7 @@ export default function SurveyPage() {
           {errors.primaryConcern && <p className={errorClass}>{errors.primaryConcern}</p>}
         </div>
 
-        <button
-          type="submit"
-          className="w-full rounded-full bg-brand py-2.5 text-sm font-medium text-background transition-colors hover:bg-brand-hover"
-        >
-          Get My Recommendations
-        </button>
+        <Button type="submit">Get My Recommendations</Button>
       </form>
     </main>
   );
