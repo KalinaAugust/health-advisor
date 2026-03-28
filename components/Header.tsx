@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { MdAssignment, MdInfo, MdPerson, MdSettings, MdLogin } from "react-icons/md";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/survey", label: "Take Survey" },
-  { href: "/about", label: "About" },
+  { href: "/survey", label: "Take Survey", icon: <MdAssignment size={18} /> },
+  { href: "/about", label: "About", icon: <MdInfo size={18} /> },
 ];
 
 export default function Header() {
@@ -17,18 +17,30 @@ export default function Header() {
   return (
     <header className="border-b border-border bg-background px-6 py-4">
       <nav aria-label="Main navigation" className="flex items-center gap-6">
+        <Link href="/" aria-label="Home" className="flex items-center gap-2 text-foreground hover:opacity-80 transition-opacity">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="13" stroke="currentColor" strokeWidth="1.5" />
+            <path d="M14 7c-3.866 0-7 3.134-7 7s3.134 7 7 7 7-3.134 7-7-3.134-7-7-7z" fill="currentColor" fillOpacity="0.12" />
+            <path d="M14 9v5l3 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M9 14h1M18 14h1M14 9v1M14 18v1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M11 11.5c.8-1.2 2-2 3-2.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.5" />
+          </svg>
+          <span className="text-sm font-semibold tracking-widest uppercase">HealthAdvisor</span>
+        </Link>
+
         {links
-          .filter(({ href }) => href === "/" || href === "/about" || !!session)
-          .map(({ href, label }) => (
+          .filter(({ href }) => href === "/about" || !!session)
+          .map(({ href, label, icon }) => (
             <Link
               key={href}
               href={href}
-              className={`text-sm font-medium transition-colors hover:text-foreground ${
+              className={`flex items-center gap-1.5 text-sm font-medium tracking-widest uppercase transition-colors hover:text-foreground ${
                 pathname === href
                   ? "text-foreground underline underline-offset-4"
                   : "text-subtle"
               }`}
             >
+              {icon}
               {label}
             </Link>
           ))}
@@ -38,8 +50,9 @@ export default function Header() {
             <>
               <Link
                 href="/profile"
-                className={`text-sm font-medium transition-colors hover:text-foreground ${pathname === "/profile" ? "text-foreground underline underline-offset-4" : "text-subtle"}`}
+                className={`flex items-center gap-1.5 text-sm font-medium tracking-widest uppercase transition-colors hover:text-foreground ${pathname === "/profile" ? "text-foreground underline underline-offset-4" : "text-subtle"}`}
               >
+                <MdPerson size={18} />
                 Profile
               </Link>
               <Link
@@ -47,27 +60,15 @@ export default function Header() {
                 aria-label="Settings"
                 className={`transition-colors hover:text-foreground ${pathname === "/settings" ? "text-foreground" : "text-subtle"}`}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
+                <MdSettings size={20} />
               </Link>
             </>
           ) : (
             <Link
               href="/login"
-              className="text-sm font-medium text-subtle transition-colors hover:text-foreground"
+              className="flex items-center gap-1.5 text-sm font-medium tracking-widest uppercase text-subtle transition-colors hover:text-foreground"
             >
+              <MdLogin size={18} />
               Login
             </Link>
           )}

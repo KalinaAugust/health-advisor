@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 export default function About() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center font-sans">
-      <main className="flex flex-1 w-full max-w-3xl flex-col gap-10 py-16 px-16">
+      <main className="flex flex-1 w-full max-w-3xl flex-col py-16 px-16">
         <h1 className="text-4xl font-semibold tracking-tight text-foreground">
           About Health Advisor
         </h1>
@@ -29,16 +31,16 @@ export default function About() {
           <h2 className="text-xl font-medium text-foreground">The team</h2>
           <ul className="flex flex-col gap-4">
             {[
-              { name: "Dr. Sarah Lee", role: "Medical Content Reviewer" },
-              { name: "Marcus Chen", role: "Full-Stack Engineer" },
-              { name: "Elena Russo", role: "Product Designer" },
-            ].map(({ name, role }) => (
+              { name: "Dr. Sanya Muha", role: "Drugs Reviewer", photo: "/images/team/member1.jpg" },
+              { name: "Dr. Ilya Lis", role: "Medical Cyborg", photo: "/images/team/member2.jpg" },
+              { name: "Dr. Alyona", role: "Vegan Cannibal", photo: "/images/team/member3.jpg" },
+            ].map(({ name, role, photo }) => (
               <li
                 key={name}
                 className="flex items-center gap-4 rounded-xl border border-border px-5 py-4"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-surface text-sm font-semibold text-foreground">
-                  {name[0]}
+                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                  <Image src={photo} alt={name} fill className="object-cover" />
                 </div>
                 <div>
                   <p className="font-medium text-foreground">{name}</p>
