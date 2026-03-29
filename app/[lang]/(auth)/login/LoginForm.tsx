@@ -37,6 +37,7 @@ export default function LoginForm({ dict, lang }: LoginFormProps) {
       setError(dict.error);
       setPending(false);
     } else {
+      router.refresh();
       router.push(`/${lang}`);
     }
   }
