@@ -1,8 +1,9 @@
 "use client";
 
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useState, useEffect, useRef } from "react";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
+import Toast from "@/components/Toast";
 
 interface SettingsClientProps {
   dict: Dictionary["settings"];
@@ -13,6 +14,7 @@ interface SettingsClientProps {
 type Toast = { message: string; ok: boolean } | null;
 
 export default function SettingsClient({ dict, lang, userName }: SettingsClientProps) {
+  const { update } = useSession();
   const [nameValue, setNameValue] = useState(userName ?? "");
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState<Toast>(null);
@@ -43,6 +45,7 @@ export default function SettingsClient({ dict, lang, userName }: SettingsClientP
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: trimmed }),
       });
+      if (res.ok) await update({ name: trimmed });
       showToast(res.ok ? dict.nameSuccess : dict.nameError, res.ok);
     } catch {
       showToast(dict.nameError, false);
@@ -53,20 +56,7 @@ export default function SettingsClient({ dict, lang, userName }: SettingsClientP
 
   return (
     <main className="max-w-sm px-6 py-12">
-      {toast && (
-        <div
-          className={[
-            "fixed top-5 right-5 z-50 flex items-center gap-2 rounded-xl border px-4 py-3 text-sm shadow-lg transition-all duration-300",
-            visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2",
-            toast.ok
-              ? "border-green-200 bg-green-50 text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200"
-              : "border-red-200 bg-red-50 text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-200",
-          ].join(" ")}
-        >
-          <span aria-hidden="true">{toast.ok ? "✓" : "✕"}</span>
-          {toast.message}
-        </div>
-      )}
+      {toast && <Toast message={toast.message} ok={toast.ok} visible={visible} />}
 
       <h1 className="mb-10 text-2xl font-bold">{dict.title}</h1>
 

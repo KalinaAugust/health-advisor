@@ -70,7 +70,20 @@
     "summaryP2": "Your digestive system appears to be functioning adequately, though mild irregularities were noted. These are commonly associated with dietary habits and hydration levels. Increasing fiber intake and ensuring consistent meal times may help normalize digestive function.",
     "summaryP3": "The musculoskeletal assessment points to reduced mobility in the lower back region, which is a frequent finding among individuals with desk-based occupations. Targeted stretching routines and ergonomic adjustments to your workspace are recommended as a first step.",
     "summaryConclusion": "General conclusion:",
-    "summaryP4": "Overall, your health profile is moderate. No critical conditions were identified at this stage, but several preventive measures are strongly advised. Regular physical activity, balanced nutrition, adequate sleep, and routine check-ups will play a key role in maintaining and improving your wellbeing. Please review the personalized recommendations tab for a detailed action plan."
+    "tabDownloadTitle": "Download PDF",
+    "tabDownloadDiagnostics": "Diagnostic Results",
+    "tabDownloadRecommendations": "Recommendations",
+    "tabDownloadSummary": "Overall Summary",
+    "tabDownloadOrganDetails": "Organ Details",
+    "tabDownloadOverview": "Health Overview",
+    "tabDownloadButton": "Download PDF",
+    "summaryP4": "Overall, your health profile is moderate. No critical conditions were identified at this stage, but several preventive measures are strongly advised. Regular physical activity, balanced nutrition, adequate sleep, and routine check-ups will play a key role in maintaining and improving your wellbeing. Please review the personalized recommendations tab for a detailed action plan.",
+    "overviewCritical": "critical",
+    "overviewWarnings": "warnings",
+    "overviewOk": "normal",
+    "overviewHealthIndex": "Health index",
+    "overviewSystemsAtRisk": "Systems with issues",
+    "overviewRiskLevel": "Risk level"
   },
   "recommendations": {
     "title": "Your Recommendations",
