@@ -25,9 +25,10 @@ const initialForm: SurveyData = {
 interface SurveyFormProps {
   dict: Dictionary["survey"];
   lang: string;
+  userName?: string | null;
 }
 
-export default function SurveyForm({ dict, lang }: SurveyFormProps) {
+export default function SurveyForm({ dict, lang, userName }: SurveyFormProps) {
   const router = useRouter();
   const [form, setForm] = useState<SurveyData>(initialForm);
   const [errors, setErrors] = useState<Partial<Record<keyof SurveyData, string>>>({});
@@ -64,7 +65,11 @@ export default function SurveyForm({ dict, lang }: SurveyFormProps) {
         onSubmit={handleSubmit}
         className="w-full max-w-lg space-y-5 rounded-xl border border-border bg-surface p-8"
       >
-        <h1 className="text-2xl font-semibold text-foreground">{dict.title}</h1>
+        <h1 className="text-2xl font-semibold text-foreground">
+          {userName
+            ? dict.titleGreeting.replace("{{name}}", userName)
+            : dict.title}
+        </h1>
         <p className="text-sm text-muted">{dict.subtitle}</p>
 
         <div className="space-y-1">

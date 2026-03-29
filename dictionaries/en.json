@@ -14,7 +14,8 @@
   },
   "survey": {
     "title": "Health Survey",
-    "subtitle": "Fill in your details below to receive personalised health recommendations.",
+    "titleGreeting": "Hi, {{name}}! Let's build your health profile.",
+    "subtitle": "Fill in a few details — we'll use them to create personalised health recommendations just for you.",
     "age": "Age",
     "sex": "Biological sex",
     "sexOptions": {
@@ -144,7 +145,11 @@
   "settings": {
     "title": "Settings",
     "account": "Account",
-    "logout": "Logout"
+    "logout": "Logout",
+    "nameLabel": "Display name",
+    "nameSave": "Save",
+    "nameSuccess": "Name updated",
+    "nameError": "Failed to update name"
   },
   "about": {
     "title": "About Health Advisor",
@@ -187,8 +192,14 @@
         "Follow-up imaging advised in 3 months"
       ],
       "tags": [
-        { "type": "attention", "label": "Attention" },
-        { "type": "monitor", "label": "Monitor" }
+        {
+          "type": "attention",
+          "label": "Attention"
+        },
+        {
+          "type": "monitor",
+          "label": "Monitor"
+        }
       ]
     },
     "brain": {
@@ -201,8 +212,14 @@
         "Reduce screen time and prioritize deep sleep"
       ],
       "tags": [
-        { "type": "urgent", "label": "Urgent" },
-        { "type": "consult", "label": "Consult Doctor" }
+        {
+          "type": "urgent",
+          "label": "Urgent"
+        },
+        {
+          "type": "consult",
+          "label": "Consult Doctor"
+        }
       ]
     },
     "bladder": {
@@ -215,8 +232,14 @@
         "Pelvic floor exercises recommended for long-term health"
       ],
       "tags": [
-        { "type": "stable", "label": "Stable" },
-        { "type": "lifestyle", "label": "Lifestyle" }
+        {
+          "type": "stable",
+          "label": "Stable"
+        },
+        {
+          "type": "lifestyle",
+          "label": "Lifestyle"
+        }
       ]
     },
     "liver": {
@@ -229,9 +252,18 @@
         "Blood panel retest required within 2 weeks"
       ],
       "tags": [
-        { "type": "urgent", "label": "Urgent" },
-        { "type": "attention", "label": "Attention" },
-        { "type": "consult", "label": "Consult Doctor" }
+        {
+          "type": "urgent",
+          "label": "Urgent"
+        },
+        {
+          "type": "attention",
+          "label": "Attention"
+        },
+        {
+          "type": "consult",
+          "label": "Consult Doctor"
+        }
       ]
     },
     "heart": {
@@ -244,8 +276,14 @@
         "Continue current diet and stress management routine"
       ],
       "tags": [
-        { "type": "stable", "label": "Stable" },
-        { "type": "lifestyle", "label": "Lifestyle" }
+        {
+          "type": "stable",
+          "label": "Stable"
+        },
+        {
+          "type": "lifestyle",
+          "label": "Lifestyle"
+        }
       ]
     },
     "intestines": {
@@ -258,8 +296,14 @@
         "Colonoscopy screening recommended within 1 month"
       ],
       "tags": [
-        { "type": "urgent", "label": "Urgent" },
-        { "type": "monitor", "label": "Monitor" }
+        {
+          "type": "urgent",
+          "label": "Urgent"
+        },
+        {
+          "type": "monitor",
+          "label": "Monitor"
+        }
       ]
     },
     "lungs": {
@@ -272,8 +316,14 @@
         "Breathing exercises (pranayama) may improve capacity"
       ],
       "tags": [
-        { "type": "attention", "label": "Attention" },
-        { "type": "lifestyle", "label": "Lifestyle" }
+        {
+          "type": "attention",
+          "label": "Attention"
+        },
+        {
+          "type": "lifestyle",
+          "label": "Lifestyle"
+        }
       ]
     },
     "hemoglobin": {
@@ -286,9 +336,18 @@
         "Consider iron supplementation after next blood test"
       ],
       "tags": [
-        { "type": "attention", "label": "Attention" },
-        { "type": "monitor", "label": "Monitor" },
-        { "type": "lifestyle", "label": "Lifestyle" }
+        {
+          "type": "attention",
+          "label": "Attention"
+        },
+        {
+          "type": "monitor",
+          "label": "Monitor"
+        },
+        {
+          "type": "lifestyle",
+          "label": "Lifestyle"
+        }
       ]
     }
   }

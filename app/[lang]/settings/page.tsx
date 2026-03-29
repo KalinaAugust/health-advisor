@@ -1,5 +1,6 @@
 import { getDictionary, hasLocale, type Locale } from "../dictionaries";
 import { notFound } from "next/navigation";
+import { auth } from "@/auth";
 import SettingsClient from "./SettingsClient";
 
 export default async function SettingsPage({
@@ -9,6 +10,15 @@ export default async function SettingsPage({
 }) {
   const { lang } = await params;
   if (!hasLocale(lang)) notFound();
-  const dict = await getDictionary(lang as Locale);
-  return <SettingsClient dict={dict.settings} lang={lang} />;
+  const [dict, session] = await Promise.all([
+    getDictionary(lang as Locale),
+    auth(),
+  ]);
+  return (
+    <SettingsClient
+      dict={dict.settings}
+      lang={lang}
+      userName={session?.user?.name ?? null}
+    />
+  );
 }
